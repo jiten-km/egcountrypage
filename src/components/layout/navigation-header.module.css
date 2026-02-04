@@ -1,0 +1,104 @@
+.header {
+    height: 80px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--grey-200);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--grey-900);
+    display: flex;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.navItem {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--grey-700);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s;
+}
+
+.navItem:hover {
+    color: var(--primary);
+}
+
+.navItem::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: width 0.2s;
+}
+
+.navItem:hover::after {
+    width: 100%;
+}
+
+.actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.iconButton {
+    padding: 8px;
+    color: var(--grey-600);
+    border-radius: 50%;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.iconButton:hover {
+    background-color: var(--grey-100);
+    color: var(--grey-900);
+}
+
+.signIn {
+    font-weight: 500;
+    color: var(--grey-700);
+    cursor: pointer;
+}
+
+.tryFree {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.tryFree:hover {
+    background-color: var(--primary-dark);
+}
+
+@media (max-width: 1024px) {
+    .nav {
+        display: none;
+    }
+}
