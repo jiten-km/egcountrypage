@@ -40,35 +40,11 @@ export default function Home() {
         {/* Fact Sheet Section */}
         <FactSheetSection />
 
-        {/* Top Commodities */}
-        <SectionContainer
-          id="commodities"
-          title="Top Import Commodities of Vietnam"
-          subtitle="Explore the product mix with breakdown by value and volume"
-          variant="transparent"
-          fullWidth={true}
-        >
-          <ChartSectionWrapper title="Top Commodities by Value" value="8 Major Categories">
-            <TopCommoditiesChart />
-          </ChartSectionWrapper>
-        </SectionContainer>
-
-        {/* Import Partners */}
-        <SectionContainer
-          id="partners"
-          title="Top Import Partners"
-          subtitle="Track top import trading partner countries of Vietnam based on global trade database. It is the most up-to-date information available on Vietnam import data."
-          variant="transparent"
-          fullWidth={true}
-        >
-          <ImportPartners />
-        </SectionContainer>
-
         {/* Trend Chart */}
         <SectionContainer
           id="trends"
           title="Import Value Trends"
-          subtitle="Monthly import values and growth rates over time"
+          subtitle="Analyze the historical growth and seasonal fluctuations of Vietnam's import values on a monthly basis. This trend analysis helps businesses identify peak procurement seasons and understand the impact of global economic shifts on national trade volumes."
           variant="transparent"
           fullWidth={true}
         >
@@ -77,15 +53,39 @@ export default function Home() {
           </ChartSectionWrapper>
         </SectionContainer>
 
+        {/* Top Commodities */}
+        <SectionContainer
+          id="commodities"
+          title="Top Import Commodities of Vietnam"
+          subtitle="Explore the comprehensive product distribution of Vietnam's imports, categorized by HS Codes. This section provides a detailed breakdown of 100+ product categories, highlighting shifting demands in electronics, machinery, and raw materials for the manufacturing sector."
+          variant="transparent"
+          fullWidth={true}
+        >
+          <ChartSectionWrapper title="Top Commodities by Value" value="100+ Categories">
+            <TopCommoditiesChart />
+          </ChartSectionWrapper>
+        </SectionContainer>
+
+        {/* Import Partners */}
+        <SectionContainer
+          id="partners"
+          title="Top Import Partners"
+          subtitle="Track the top trading partner countries that fuel Vietnam's growing economy. Our database reveals significant dependency on Asian markets like China and South Korea, while also highlighting emerging trade corridors with Western nations and ASEAN members."
+          variant="transparent"
+          fullWidth={true}
+        >
+          <ImportPartners />
+        </SectionContainer>
+
         {/* Ports */}
         <SectionContainer
           id="ports"
           title="Major Import Ports"
-          subtitle="Highest number of shipments arrive at these ports"
+          subtitle="Identify the critical entry points for global goods into Vietnam's territory. From the bustling hubs in Ho Chi Minh City to the deep-water ports of Hai Phong, understand which maritime gateways handle the highest volume of shipment traffic and logistics operations."
           variant="transparent"
           fullWidth={true}
         >
-          <ChartSectionWrapper title="Major Ports Tracking" value="42 Active Ports">
+          <ChartSectionWrapper title="Major Ports Tracking" value="50+ Active Ports">
             <PortChart />
           </ChartSectionWrapper>
         </SectionContainer>

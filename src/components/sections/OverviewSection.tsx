@@ -145,31 +145,71 @@ export default function OverviewSection() {
 
                 {/* Description Content */}
                 <div>
-                    <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '20px', color: 'var(--grey-900)' }}>
-                        Vietnam Imports Overview
-                    </h3>
-                    <div style={{ fontSize: '15px', lineHeight: 1.8, color: 'var(--grey-700)' }}>
-                        <p style={{ marginBottom: '16px' }}>
-                            Vietnam import trade data provides comprehensive insights into the country's international trade activities.
-                            With over <strong style={{ color: 'var(--primary)' }}>76 million+ shipment records</strong>, our database covers
-                            detailed information about <strong style={{ color: 'var(--primary)' }}>94,948 active importers</strong> and their
-                            trading patterns across various product categories.
-                        </p>
-                        <p style={{ marginBottom: '16px' }}>
-                            The data includes critical information such as <strong>HS codes</strong>, product descriptions, importer and
-                            exporter details, shipment quantities, values, ports of entry, and dates of arrival. Vietnam's import value
-                            has grown by <strong style={{ color: 'var(--success)' }}>12.5% YoY</strong>, indicating a robust and expanding
-                            trade ecosystem.
-                        </p>
-                        <p>
-                            Major import partners include <strong>China (25.4%)</strong>, <strong>South Korea (10.8%)</strong>, and
-                            <strong> Japan (3.9%)</strong>. Top imported commodities include electrical machinery, mechanical appliances,
-                            textiles, and plastics, serving Vietnam's growing manufacturing and consumer sectors.
-                        </p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                        <h3 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--grey-900)', letterSpacing: '-0.02em' }}>
+                            Vietnam Import Trade Intelligence
+                        </h3>
+                        <span style={{ fontSize: '12px', background: '#ecfdf5', color: '#059669', padding: '4px 12px', borderRadius: '100px', fontWeight: 700 }}>
+                            SGE Optimized Summary
+                        </span>
                     </div>
 
+                    {/* Quick Answer / SGE Summary Block */}
+                    <div style={{
+                        background: 'linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%)',
+                        borderRadius: '16px',
+                        padding: '24px',
+                        border: '1px solid #e2e8f0',
+                        marginBottom: '32px',
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(4, 1fr)',
+                        gap: '16px',
+                        boxShadow: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.05)'
+                    }}>
+                        <div style={{ textAlign: 'center', borderRight: '1px solid #e2e8f0' }}>
+                            <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>Imports (2025)</div>
+                            <div style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>$486.95B</div>
+                        </div>
+                        <div style={{ textAlign: 'center', borderRight: '1px solid #e2e8f0' }}>
+                            <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>Total Shipments</div>
+                            <div style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>368M+</div>
+                        </div>
+                        <div style={{ textAlign: 'center', borderRight: '1px solid #e2e8f0' }}>
+                            <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>Active Importers</div>
+                            <div style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>1.2M+</div>
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                            <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>Global Partners</div>
+                            <div style={{ fontSize: '18px', fontWeight: 800, color: '#0f172a' }}>240+</div>
+                        </div>
+                    </div>
 
+                    <div style={{ fontSize: '15px', lineHeight: 1.8, color: 'var(--grey-700)' }}>
+                        <p style={{ marginBottom: '16px' }}>
+                            <strong>How much does Vietnam import?</strong> In 2025, Vietnam's total import value reached <strong style={{ color: 'var(--primary)' }}>$486.95 Billion</strong>, marking a significant <strong style={{ color: 'var(--success)' }}>12.5% year-on-year growth</strong>. This expansion is driven by Vietnam's critical role in the global electronics and textile supply chains, supported by over <strong style={{ color: 'var(--primary)' }}>2,895 active ports</strong> and a network of <strong style={{ color: 'var(--primary)' }}>368 million+ shipment records</strong>.
+                        </p>
+                        <p style={{ marginBottom: '16px' }}>
+                            <strong>What are Vietnam's top imports?</strong> The country primarily imports <strong style={{ color: '#0f172a' }}>Electrical Machinery (HS 85)</strong>, which accounts for <strong>$89.2 Billion</strong> in value, followed by Mechanical Appliances ($45.4B) and Textiles ($22.1B). Our database tracks these through <strong style={{ color: '#0f172a' }}>1.2 million+ active importers</strong>, including major global entities like Samsung and Intel.
+                        </p>
+                        <ul style={{
+                            marginBottom: '20px',
+                            paddingLeft: '20px',
+                            color: 'var(--grey-700)',
+                            display: 'grid',
+                            gridTemplateColumns: '1fr 1fr',
+                            gap: '8px'
+                        }}>
+                            <li><strong>Largest Partner:</strong> China (25.4% Share)</li>
+                            <li><strong>Main Entry Hub:</strong> Cat Lai Port (32% Share)</li>
+                            <li><strong>HS Code Coverage:</strong> 100% Detailed Tracking</li>
+                            <li><strong>Update Frequency:</strong> Monthly Real-time Data</li>
+                        </ul>
+                        <p>
+                            Vietnam's trade landscape is highly diversified across <strong>240 trading partners</strong>, with China, South Korea, and Japan being the top contributors. Businesses use Vietnam's import trade data to monitor competitor activities, identify new suppliers, and analyze market price variations across different quarters.
+                        </p>
+                    </div>
                 </div>
+
             </div>
         </div>
     );

@@ -1,205 +1,180 @@
 "use client";
 import React, { useState } from 'react';
-import { TrendingUp } from 'lucide-react';
-
-const importersData = [
-    { name: "Samsung Electronics Vietnam Thai Nguyen Branch Of Ho Chi Minh City", value: 15557.54, percent: 3.16 },
-    { name: "Intel Products Vietnam Company Limited", value: 10533.25, percent: 2.14 },
-    { name: "Ms Samsung Electronics Vietnam Company Limited", value: 10305.32, percent: 2.09 },
-    { name: "Samsung Display Vietnam Company Limited", value: 10036.41, percent: 2.04 },
-    { name: "Hanyang Digitech Vina Company Limited", value: 9434.80, percent: 1.91 },
-    { name: "Ms Fuyu Company Limited", value: 7627.35, percent: 1.55 },
-    { name: "Fukang Technology Company Limited", value: 7426.36, percent: 1.51 },
-    { name: "Compal Vietnam Limited", value: 6423.26, percent: 1.30 },
-    { name: "Company Limited Lg Display Vietnam Hai Phong", value: 6228.81, percent: 1.26 },
-    { name: "Nghi Son Refinery & Petrochemical Company Limited", value: 5718.39, percent: 1.16 }
-];
+import ScrollableTable from '../ui/ScrollableTable';
+import SectionContainer from '../ui/SectionContainer';
+import { importersData, suppliersData } from '@/data/mockTradeData';
 
 export default function TopImportersSection() {
-    const [view, setView] = useState('importers');
-    const [comparison, setComparison] = useState('yoy');
+    const [activeTab, setActiveTab] = useState('importers');
     const [timeRange, setTimeRange] = useState('1Y');
 
-    const maxValue = Math.max(...importersData.map(d => d.value));
+    const data = activeTab === 'importers' ? importersData : suppliersData;
+    const maxValue = Math.max(...data.map(d => d.value));
+
+    const tableColumns = [
+        {
+            header: activeTab === 'importers' ? 'Importer Name' : 'Supplier Name',
+            key: 'name',
+            align: 'left' as const,
+            render: (val: string) => (
+                <a href={`https://dashboard.exportgenius.in/search?q=${val}`} target="_blank" rel="noopener noreferrer" style={{ color: '#2563EB', fontWeight: 600, textDecoration: 'none' }}>
+                    {val}
+                </a>
+            )
+        },
+        { header: 'Value ($M)', key: 'value', align: 'right' as const, render: (val: number) => Math.round(val).toLocaleString() },
+        { header: 'Share', key: 'percent', align: 'right' as const, render: (val: number) => <span style={{ fontWeight: 700 }}>{val}%</span> }
+    ];
 
     return (
-        <section id="top-importers" style={{ padding: '80px 0', background: 'transparent', fontFamily: 'var(--font-inter)' }}>
-            <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
-
-                {/* Header Area */}
-                <div style={{ marginBottom: '32px' }}>
-                    <h2 style={{ fontSize: '32px', fontWeight: 800, color: '#0f172a', marginBottom: '8px' }}>
-                        Top Importers and Foreign Suppliers of Vietnam
-                    </h2>
-                    <p style={{ color: '#64748b', fontSize: '16px', lineHeight: 1.6 }}>
-                        Highest value of shipments are imported by these companies
-                    </p>
+        <SectionContainer
+            id="top-importers"
+            title="Top Importers and Foreign Suppliers of Vietnam"
+            subtitle="Identify the key corporate entities and global organizations that dominate Vietnam's import ecosystem. This section provides shipment-level intelligence on 100+ major importers and their primary international suppliers, enabling detailed competitive analysis and supply chain verification."
+            variant="transparent"
+            fullWidth={true}
+        >
+            {/* Dashboard Card Container */}
+            <div style={{
+                background: 'white',
+                borderRadius: '12px',
+                border: '1px solid #f1f5f9',
+                boxShadow: '0 10px 15px -3px rgba(0,0,0,0.04)',
+                overflow: 'hidden'
+            }}>
+                {/* Comparison Tabs */}
+                <div style={{
+                    display: 'flex',
+                    background: '#f8fafc',
+                    padding: '0 24px',
+                    borderBottom: '1px solid #f1f5f9',
+                    gap: '32px'
+                }}>
+                    {[
+                        { id: 'importers', label: 'Top 100 Importers' },
+                        { id: 'suppliers', label: 'Top 100 Suppliers' }
+                    ].map((tab) => {
+                        const isActive = activeTab === tab.id;
+                        return (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                style={{
+                                    padding: '20px 0',
+                                    fontSize: '15px',
+                                    fontWeight: 700,
+                                    color: isActive ? '#2563eb' : '#64748b',
+                                    border: 'none',
+                                    background: 'none',
+                                    cursor: 'pointer',
+                                    borderBottom: isActive ? '3px solid #2563eb' : '3px solid transparent',
+                                    transition: 'all 0.2s'
+                                }}
+                            >
+                                {tab.label}
+                            </button>
+                        );
+                    })}
                 </div>
 
-                {/* Dashboard Card Container */}
-                <div style={{
-                    background: 'white',
-                    borderRadius: '12px',
-                    border: '1px solid #f1f5f9',
-                    boxShadow: '0 10px 15px -3px rgba(0,0,0,0.04)',
-                    overflow: 'hidden'
-                }}>
-                    {/* Comparison Tabs */}
-                    <div style={{
-                        display: 'flex',
-                        background: '#f8fafc',
-                        padding: '0 24px',
-                        borderBottom: '1px solid #f1f5f9',
-                        gap: '24px'
-                    }}>
-                        {['List of Top Importers', 'List of ForeignSuppliers'].map((tab, i) => {
-                            const id = i === 0 ? 'yoy' : 'mom';
-                            const isActive = comparison === id;
-                            return (
-                                <button
-                                    key={id}
-                                    onClick={() => setComparison(id)}
-                                    style={{
-                                        padding: '16px 0',
-                                        fontSize: '14px',
-                                        fontWeight: 600,
-                                        color: isActive ? '#2563eb' : '#64748b',
-                                        border: 'none',
-                                        background: 'none',
-                                        cursor: 'pointer',
-                                        borderBottom: isActive ? '2px solid #2563eb' : '2px solid transparent',
-                                        transition: 'all 0.2s'
-                                    }}
-                                >
-                                    {tab}
-                                </button>
-                            );
-                        })}
-                    </div>
-
-                    <div style={{ padding: '32px' }}>
-                        {/* Inner Header with Time Filters */}
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '40px' }}>
-                            <div>
-                                <div style={{ fontSize: '13px', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>
-                                    Top Importers Tracking
-                                </div>
-                                <div style={{ fontSize: '28px', fontWeight: 800, color: '#0f172a' }}>
-                                    10 Major Import Companies of Vietnam
-                                </div>
+                <div style={{ padding: '32px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '40px' }}>
+                        <div>
+                            <div style={{ fontSize: '13px', color: '#94a3b8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>
+                                Live Trade Analytics
                             </div>
-
-                            <div style={{ display: 'flex', gap: '16px' }}>
-                                {['1M', '3M', '6M', '1Y', '3Y', 'ALL'].map(range => (
-                                    <button
-                                        key={range}
-                                        onClick={() => setTimeRange(range)}
-                                        style={{
-                                            fontSize: '13px',
-                                            fontWeight: 700,
-                                            color: timeRange === range ? '#2563eb' : '#94a3b8',
-                                            background: 'none',
-                                            border: 'none',
-                                            cursor: 'pointer',
-                                            transition: 'color 0.2s'
-                                        }}
-                                    >
-                                        {range}
-                                    </button>
-                                ))}
+                            <div style={{ fontSize: '28px', fontWeight: 800, color: '#0f172a' }}>
+                                {activeTab === 'importers' ? '100+ Major Import Companies' : '100+ Major Global Suppliers'}
                             </div>
                         </div>
 
-                        <div style={{ display: 'flex', gap: '48px' }}>
-                            {/* Left: Bar Chart */}
-                            <div style={{ flex: 1.2, position: 'relative' }}>
-                                {/* Horizontal grid lines */}
-                                <div style={{
-                                    position: 'absolute',
-                                    inset: '0 0 0 140px',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    pointerEvents: 'none',
-                                    zIndex: 0
-                                }}>
-                                    {[0, 1, 2, 3, 4].map(i => (
-                                        <div key={i} style={{ width: '1px', borderLeft: '1px dashed #f1f5f9' }} />
-                                    ))}
-                                </div>
+                        <div style={{ display: 'flex', gap: '16px', background: '#F1F5F9', padding: '4px', borderRadius: '8px' }}>
+                            {['1M', '3M', '6M', '1Y', '3Y', 'ALL'].map(range => (
+                                <button
+                                    key={range}
+                                    onClick={() => setTimeRange(range)}
+                                    style={{
+                                        fontSize: '12px',
+                                        padding: '6px 12px',
+                                        borderRadius: '6px',
+                                        fontWeight: 700,
+                                        color: timeRange === range ? '#2563eb' : '#64748b',
+                                        background: timeRange === range ? 'white' : 'transparent',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        boxShadow: timeRange === range ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                                        transition: 'all 0.2s'
+                                    }}
+                                >
+                                    {range}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', position: 'relative', zIndex: 1 }}>
-                                    {importersData.slice(0, 6).map((d, i) => (
-                                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                                            <div style={{
-                                                width: '120px',
-                                                fontSize: '13px',
-                                                fontWeight: 600,
-                                                color: '#64748b',
-                                                textAlign: 'right',
-                                                whiteSpace: 'nowrap',
-                                                overflow: 'hidden',
-                                                textOverflow: 'ellipsis'
-                                            }}>
-                                                {d.name.split(' ')[0]} {d.name.split(' ')[1] || ''}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 1.2fr', gap: '48px', alignItems: 'stretch' }}>
+                        {/* Left: Bar Chart Visualization */}
+                        <div style={{ position: 'relative' }}>
+                            <div style={{
+                                background: '#F8FAFC',
+                                borderRadius: '16px',
+                                padding: '32px',
+                                border: '1px solid #E2E8F0',
+                                height: '100%'
+                            }}>
+                                <div style={{ marginBottom: '24px', fontSize: '14px', fontWeight: 600, color: '#475569' }}>
+                                    Value Distribution by Top Entities
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+                                    {data.slice(0, 8).map((d, i) => (
+                                        <div key={i}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '12px' }}>
+                                                <span style={{ fontWeight: 700, color: '#1E293B' }}>{d.name.split(' ').slice(0, 3).join(' ')}</span>
+                                                <span style={{ color: '#64748B' }}>${Math.round(d.value).toLocaleString()}M</span>
                                             </div>
-                                            <div style={{ flex: 1, height: '24px', background: '#f8fafc', borderRadius: '4px', overflow: 'hidden' }}>
+                                            <div style={{ height: '10px', background: '#E2E8F0', borderRadius: '5px', overflow: 'hidden' }}>
                                                 <div style={{
                                                     width: `${(d.value / maxValue) * 100}%`,
                                                     height: '100%',
-                                                    background: `linear-gradient(90deg, #2563eb ${100 - i * 15}%, #60a5fa 100%)`,
-                                                    borderRadius: '4px',
-                                                    transition: 'width 1.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                                                    opacity: 1 - (i * 0.12)
+                                                    background: 'linear-gradient(90deg, #2563EB 0%, #60A5FA 100%)',
+                                                    borderRadius: '5px',
+                                                    transition: 'width 1.5s ease-out'
                                                 }} />
                                             </div>
                                         </div>
                                     ))}
                                 </div>
-                            </div>
 
-                            {/* Right: Table */}
-                            <div style={{ flex: 0.8 }}>
-                                <div style={{
-                                    border: '1px solid #f1f5f9',
-                                    borderRadius: '12px',
-                                    overflow: 'hidden'
-                                }}>
-                                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                                        <thead>
-                                            <tr style={{ borderBottom: '1px solid #f1f5f9', background: '#fcfdfe' }}>
-                                                <th style={{ padding: '16px', textAlign: 'left', fontSize: '12px', color: '#64748b', fontWeight: 700 }}>Importer Name</th>
-                                                <th style={{ padding: '16px', textAlign: 'right', fontSize: '12px', color: '#64748b', fontWeight: 700 }}>Value ($M)</th>
-                                                <th style={{ padding: '16px', textAlign: 'right', fontSize: '12px', color: '#64748b', fontWeight: 700 }}>Share</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {importersData.slice(0, 6).map((row, idx) => (
-                                                <tr key={idx} style={{ borderBottom: idx === 5 ? 'none' : '1px solid #f8fafc' }}>
-                                                    <td style={{ padding: '14px 16px', fontSize: '13px', fontWeight: 600, color: '#475569' }}>
-                                                        {row.name.substring(0, 20)}...
-                                                    </td>
-                                                    <td style={{ padding: '14px 16px', textAlign: 'right', fontSize: '13px', fontWeight: 700, color: '#1e293b' }}>
-                                                        {Math.round(row.value).toLocaleString()}
-                                                    </td>
-                                                    <td style={{ padding: '14px 16px', textAlign: 'right', fontSize: '13px', fontWeight: 800, color: '#0f172a' }}>
-                                                        {row.percent}%
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                            <tr style={{ background: '#f8fafc' }}>
-                                                <td style={{ padding: '14px 16px', fontSize: '13px', fontWeight: 700, color: '#2563eb' }}>Others</td>
-                                                <td style={{ padding: '14px 16px', textAlign: 'right', fontSize: '13px', fontWeight: 700, color: '#2563eb' }}>12,450</td>
-                                                <td style={{ padding: '14px 16px', textAlign: 'right', fontSize: '13px', fontWeight: 800, color: '#2563eb' }}>18%</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                {/* Sub-CTA */}
+                                <div style={{ marginTop: '40px', textAlign: 'center' }}>
+                                    <a href="https://dashboard.exportgenius.in/sign-up" target="_blank" rel="noopener noreferrer" style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '8px',
+                                        background: '#0F172A',
+                                        color: 'white',
+                                        padding: '12px 24px',
+                                        borderRadius: '12px',
+                                        fontWeight: 700,
+                                        fontSize: '14px',
+                                        textDecoration: 'none'
+                                    }}>
+                                        Download Report
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Right: Scrollable Table */}
+                        <ScrollableTable columns={tableColumns} data={data} maxHeight="600px" />
                     </div>
                 </div>
-
             </div>
-        </section>
+        </SectionContainer>
     );
 }
+
+

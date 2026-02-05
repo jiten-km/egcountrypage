@@ -58,7 +58,7 @@ export default function DirectorySection() {
 
     return (
         <section style={{ padding: '60px 0', background: '#f8fafc', fontFamily: 'var(--font-inter)' }}>
-            <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
+            <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', padding: '0 40px' }}>
 
                 {/* Tab Container */}
                 <div style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0' }}>

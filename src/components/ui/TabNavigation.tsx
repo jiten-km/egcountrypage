@@ -5,9 +5,9 @@ import { FileText, TrendingUp, Package, Globe, Anchor, Building2, BookOpen, Help
 const tabs = [
     { id: 'overview', label: 'Overview', icon: FileText },
     { id: 'fact-sheet', label: 'Factsheet', icon: Database },
+    { id: 'trends', label: 'Trend Analysis', icon: TrendingUp },
     { id: 'commodities', label: 'Top Commodities', icon: Package },
     { id: 'partners', label: 'Import Partners', icon: Globe },
-    { id: 'trends', label: 'Trend Analysis', icon: TrendingUp },
     { id: 'ports', label: 'Ports', icon: Anchor },
     { id: 'bill-of-lading', label: 'Sample Data', icon: Ship },
     { id: 'top-importers', label: 'Top Importers', icon: Building2 },

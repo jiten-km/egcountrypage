@@ -39,14 +39,6 @@ export default function PopularCountries() {
 
     const continents = Object.keys(countriesData);
 
-    const scroll = (direction: 'left' | 'right') => {
-        if (scrollRef.current) {
-            const { scrollLeft, clientWidth } = scrollRef.current;
-            const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
-            scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-        }
-    };
-
     return (
         <section id="popular-countries" style={{ marginTop: '80px', marginBottom: '80px', fontFamily: 'var(--font-inter)' }}>
             {/* Header Section */}
@@ -63,46 +55,6 @@ export default function PopularCountries() {
                     <p style={{ color: '#64748b', fontSize: '16px', fontWeight: 500 }}>
                         Explore detailed trade intelligence across multiple continents.
                     </p>
-                </div>
-
-                {/* Control Icons for Scroller */}
-                <div style={{ display: 'flex', gap: '12px' }}>
-                    <button
-                        onClick={() => scroll('left')}
-                        style={{
-                            width: '44px',
-                            height: '44px',
-                            borderRadius: '50%',
-                            border: '1px solid #e2e8f0',
-                            background: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            color: '#64748b',
-                            transition: 'all 0.2s'
-                        }}
-                    >
-                        <ChevronLeft size={20} />
-                    </button>
-                    <button
-                        onClick={() => scroll('right')}
-                        style={{
-                            width: '44px',
-                            height: '44px',
-                            borderRadius: '50%',
-                            border: '1px solid #e2e8f0',
-                            background: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            cursor: 'pointer',
-                            color: '#64748b',
-                            transition: 'all 0.2s'
-                        }}
-                    >
-                        <ChevronRight size={20} />
-                    </button>
                 </div>
             </div>
 
@@ -138,24 +90,25 @@ export default function PopularCountries() {
                 ))}
             </div>
 
-            {/* Scroller Container */}
+            {/* Vertical Scroll Area */}
             <div
-                ref={scrollRef}
                 style={{
-                    display: 'flex',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(2, 1fr)',
                     gap: '24px',
-                    overflowX: 'hidden',
+                    maxHeight: '600px',
+                    overflowY: 'auto',
                     padding: '8px 4px 20px',
-                    scrollSnapType: 'x mandatory'
+                    paddingRight: '12px',
+                    scrollbarWidth: 'thin',
+                    scrollbarColor: '#e2e8f0 transparent'
                 }}
+                className="custom-scrollbar"
             >
                 {countriesData[activeContinent].map((country, i) => (
                     <div
                         key={i}
                         style={{
-                            minWidth: '380px',
-                            maxWidth: '380px',
-                            scrollSnapAlign: 'start',
                             background: 'white',
                             borderRadius: '24px',
                             padding: '32px',
@@ -170,7 +123,7 @@ export default function PopularCountries() {
                             gap: '24px'
                         }}
                         onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-8px)';
+                            e.currentTarget.style.transform = 'translateY(-4px)';
                             e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0,0,0,0.05)';
                             e.currentTarget.style.borderColor = (country.color || '#2563eb') + '44';
                         }}
@@ -285,3 +238,4 @@ export default function PopularCountries() {
         </section>
     );
 }
+

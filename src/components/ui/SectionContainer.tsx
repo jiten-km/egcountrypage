@@ -82,7 +82,7 @@ export default function SectionContainer({
                             color: 'var(--grey-600)',
                             fontSize: '15px',
                             lineHeight: 1.6,
-                            maxWidth: '800px'
+                            maxWidth: fullWidth ? '100%' : '800px'
                         }}>
                             {subtitle}
                         </p>
