@@ -110,28 +110,7 @@ export default function HeroSection() {
                         Search
                     </button>
                 </div>
-                {/* Recent Searches Chips */}
-                <div style={{ marginTop: '16px', display: 'flex', gap: '10px' }}>
-                    <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '14px' }}>Recent:</span>
-                    {['HS Code 8544', 'Samsung Electronics', 'Coffee Beans', 'Cat Lai Port'].map(tag => (
-                        <span key={tag} style={{
-                            background: 'rgba(255,255,255,0.15)',
-                            color: 'white',
-                            padding: '4px 12px',
-                            borderRadius: '16px',
-                            fontSize: '13px',
-                            backdropFilter: 'blur(4px)',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            cursor: 'pointer',
-                            transition: 'background 0.2s'
-                        }}
-                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.25)'}
-                            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.15)'}
-                        >
-                            {tag}
-                        </span>
-                    ))}
-                </div>
+
             </div>
 
             {/* Download Sample Modal */}
