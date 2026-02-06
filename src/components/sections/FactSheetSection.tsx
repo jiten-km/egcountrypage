@@ -17,7 +17,8 @@ import {
     Anchor,
     Zap,
     TrendingUp,
-    ShieldCheck
+    ShieldCheck,
+    ChevronDown
 } from 'lucide-react';
 import SubscriptionModal from '../ui/SubscriptionModal';
 import DataFieldsModal from '../ui/DataFieldsModal';
@@ -25,6 +26,8 @@ import DataFieldsModal from '../ui/DataFieldsModal';
 export default function FactSheetSection() {
     const [isSubscriptionModalOpen, setIsSubscriptionModalOpen] = useState(false);
     const [isDataFieldsModalOpen, setIsDataFieldsModalOpen] = useState(false);
+    const [showSubscribeDropdown, setShowSubscribeDropdown] = useState(false);
+    const [selectedPlan, setSelectedPlan] = useState('single');
 
     return (
         <div id="fact-sheet" style={{ marginBottom: '80px', fontFamily: 'var(--font-inter)' }}>
@@ -155,13 +158,107 @@ export default function FactSheetSection() {
                 boxShadow: '0 10px 15px -3px rgba(0,0,0,0.03)',
                 border: '1px solid #f1f5f9'
             }}>
-                <FeatureItem
-                    icon={<Calendar size={18} />}
-                    label="Available Plan"
-                    value="Subscribe Now"
-                    link
-                    onClick={() => setIsSubscriptionModalOpen(true)}
-                />
+                <div style={{ position: 'relative' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                        <div style={{ color: '#2563eb', background: '#eff6ff', padding: '10px', borderRadius: '12px' }}>
+                            <Calendar size={18} />
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <span style={{ fontSize: '12px', color: '#64748b' }}>Available Plan</span>
+                            <div
+                                onClick={() => setShowSubscribeDropdown(!showSubscribeDropdown)}
+                                style={{
+                                    fontSize: '14px',
+                                    fontWeight: 700,
+                                    color: '#2563eb',
+                                    textDecoration: 'underline',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '4px'
+                                }}
+                            >
+                                Subscribe Now
+                                <ChevronDown size={14} />
+                            </div>
+                        </div>
+                    </div>
+
+                    {showSubscribeDropdown && (
+                        <div style={{
+                            position: 'absolute',
+                            top: '100%',
+                            left: 0,
+                            marginTop: '12px',
+                            background: 'white',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '12px',
+                            boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)',
+                            padding: '16px',
+                            zIndex: 50,
+                            width: '260px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '12px'
+                        }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                                {[
+                                    { id: 'single', name: 'Start Plan', price: '$2,400/yr' },
+                                    { id: 'multi', name: 'Essential Plan', price: '$7,200/yr' },
+                                    { id: 'corporate', name: 'Expert Plan', price: '$12,000/yr' }
+                                ].map((plan) => (
+                                    <div
+                                        key={plan.id}
+                                        onClick={() => setSelectedPlan(plan.id)}
+                                        style={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            padding: '8px 10px',
+                                            borderRadius: '8px',
+                                            border: selectedPlan === plan.id ? '1px solid #2563eb' : '1px solid #e2e8f0',
+                                            background: selectedPlan === plan.id ? '#eff6ff' : 'white',
+                                            cursor: 'pointer',
+                                            transition: 'all 0.2s'
+                                        }}
+                                    >
+                                        <div style={{
+                                            minWidth: '14px',
+                                            height: '14px',
+                                            borderRadius: '50%',
+                                            border: selectedPlan === plan.id ? '4px solid #2563eb' : '1px solid #cbd5e1',
+                                            marginRight: '10px'
+                                        }} />
+                                        <div style={{ flex: 1, textAlign: 'left' }}>
+                                            <div style={{ fontSize: '13px', fontWeight: 600, color: '#1e293b' }}>{plan.name}</div>
+                                            <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 500 }}>{plan.price}</div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <a
+                                href="https://dashboard.exportgenius.in/sign-up"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                    display: 'block',
+                                    background: '#2563eb',
+                                    color: 'white',
+                                    textAlign: 'center',
+                                    padding: '12px',
+                                    borderRadius: '8px',
+                                    fontSize: '14px',
+                                    fontWeight: 700,
+                                    textDecoration: 'none',
+                                    transition: 'background 0.2s'
+                                }}
+                                onMouseEnter={(e) => e.currentTarget.style.background = '#1d4ed8'}
+                                onMouseLeave={(e) => e.currentTarget.style.background = '#2563eb'}
+                            >
+                                Start 7 Days Free Trial
+                            </a>
+                        </div>
+                    )}
+                </div>
                 <FeatureItem
                     icon={<FileText size={18} />}
                     label="Data Fields"
