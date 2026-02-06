@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from 'react';
+import { ShieldCheck, TrendingUp, ArrowRight } from 'lucide-react';
+
 import ScrollableTable from '../ui/ScrollableTable';
 import SectionContainer from '../ui/SectionContainer';
 import { importersData, suppliersData } from '@/data/mockTradeData';
@@ -7,6 +9,7 @@ import { importersData, suppliersData } from '@/data/mockTradeData';
 export default function TopImportersSection() {
     const [activeTab, setActiveTab] = useState('importers');
     const [timeRange, setTimeRange] = useState('1Y');
+    const [submitted, setSubmitted] = useState(false);
 
     const data = activeTab === 'importers' ? importersData : suppliersData;
     const maxValue = Math.max(...data.map(d => d.value));
@@ -51,8 +54,8 @@ export default function TopImportersSection() {
                     gap: '32px'
                 }}>
                     {[
-                        { id: 'importers', label: 'Top 100 Importers' },
-                        { id: 'suppliers', label: 'Top 100 Suppliers' }
+                        { id: 'importers', label: 'Top Importers' },
+                        { id: 'suppliers', label: 'Top Suppliers' }
                     ].map((tab) => {
                         const isActive = activeTab === tab.id;
                         return (
@@ -114,62 +117,138 @@ export default function TopImportersSection() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 1.2fr', gap: '48px', alignItems: 'stretch' }}>
                         {/* Left: Bar Chart Visualization */}
-                        <div style={{ position: 'relative' }}>
+                        {/* Left: Request Access Form */}
+                        <div style={{
+                            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)',
+                            borderRadius: '16px',
+                            padding: '40px',
+                            color: 'white',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            height: '100%'
+                        }}>
+                            {/* Decorative Background */}
                             <div style={{
-                                background: '#F8FAFC',
-                                borderRadius: '16px',
-                                padding: '32px',
-                                border: '1px solid #E2E8F0',
-                                height: '100%'
-                            }}>
-                                <div style={{ marginBottom: '24px', fontSize: '14px', fontWeight: 600, color: '#475569' }}>
-                                    Value Distribution by Top Entities
+                                position: 'absolute',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 50%)',
+                                pointerEvents: 'none'
+                            }} />
+
+                            <div style={{ position: 'relative', zIndex: 1 }}>
+                                <div style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '8px',
+                                    background: 'rgba(59, 130, 246, 0.2)',
+                                    border: '1px solid rgba(59, 130, 246, 0.3)',
+                                    padding: '6px 12px',
+                                    borderRadius: '100px',
+                                    color: '#93c5fd',
+                                    fontSize: '12px',
+                                    fontWeight: 700,
+                                    marginBottom: '24px',
+                                    backdropFilter: 'blur(4px)'
+                                }}>
+                                    <TrendingUp size={14} />
+                                    PREMIUM ACCESS
                                 </div>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-                                    {data.slice(0, 8).map((d, i) => (
-                                        <div key={i}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '12px' }}>
-                                                <span style={{ fontWeight: 700, color: '#1E293B' }}>{d.name.split(' ').slice(0, 3).join(' ')}</span>
-                                                <span style={{ color: '#64748B' }}>${Math.round(d.value).toLocaleString()}M</span>
+
+                                <h3 style={{
+                                    fontSize: '32px',
+                                    fontWeight: 800,
+                                    marginBottom: '16px',
+                                    lineHeight: 1.2,
+                                    background: 'linear-gradient(to right, #ffffff, #93c5fd)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent'
+                                }}>
+                                    Unlock Full Importer Details
+                                </h3>
+
+                                <p style={{
+                                    fontSize: '15px',
+                                    lineHeight: 1.6,
+                                    color: '#cbd5e1',
+                                    marginBottom: '32px'
+                                }}>
+                                    Get detailed profiles of 100,000+ companies including contact info, shipment volume, and trading partners.
+                                </p>
+
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                    {[
+                                        'View Complete Company Profiles',
+                                        'Track Competitor Shipments',
+                                        'Direct Decision Maker Contacts'
+                                    ].map((feature, i) => (
+                                        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: '#e2e8f0' }}>
+                                            <div style={{ background: 'rgba(16, 185, 129, 0.2)', padding: '2px', borderRadius: '50%' }}>
+                                                <ShieldCheck size={14} color="#34d399" />
                                             </div>
-                                            <div style={{ height: '10px', background: '#E2E8F0', borderRadius: '5px', overflow: 'hidden' }}>
-                                                <div style={{
-                                                    width: `${(d.value / maxValue) * 100}%`,
-                                                    height: '100%',
-                                                    background: 'linear-gradient(90deg, #2563EB 0%, #60A5FA 100%)',
-                                                    borderRadius: '5px',
-                                                    transition: 'width 1.5s ease-out'
-                                                }} />
-                                            </div>
+                                            {feature}
                                         </div>
                                     ))}
                                 </div>
 
-                                {/* Sub-CTA */}
-                                <div style={{ marginTop: '40px', textAlign: 'center' }}>
+                                <div style={{ marginTop: '40px' }}>
                                     <a href="https://dashboard.exportgenius.in/sign-up" target="_blank" rel="noopener noreferrer" style={{
                                         display: 'inline-flex',
                                         alignItems: 'center',
                                         gap: '8px',
-                                        background: '#0F172A',
+                                        background: '#3b82f6',
                                         color: 'white',
-                                        padding: '12px 24px',
-                                        borderRadius: '12px',
+                                        padding: '14px 28px',
+                                        borderRadius: '100px',
                                         fontWeight: 700,
-                                        fontSize: '14px',
-                                        textDecoration: 'none'
-                                    }}>
-                                        Download Report
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
-                                        </svg>
+                                        fontSize: '15px',
+                                        textDecoration: 'none',
+                                        boxShadow: '0 0 20px rgba(59, 130, 246, 0.4)',
+                                        transition: 'all 0.3s ease',
+                                        width: 'fit-content'
+                                    }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.transform = 'translateY(-2px)';
+                                            e.currentTarget.style.boxShadow = '0 10px 30px rgba(59, 130, 246, 0.6)';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.transform = 'translateY(0)';
+                                            e.currentTarget.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.4)';
+                                        }}
+                                    >
+                                        Access Full Database
+                                        <ArrowRight size={18} />
                                     </a>
                                 </div>
                             </div>
                         </div>
+                        <ScrollableTable columns={tableColumns} data={data} maxHeight="450px" />
+                    </div>
+                </div>
 
-                        {/* Right: Scrollable Table */}
-                        <ScrollableTable columns={tableColumns} data={data} maxHeight="600px" />
+                {/* Data Source Footer */}
+                <div style={{
+                    padding: '16px 32px',
+                    borderTop: '1px solid #f1f5f9',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    background: '#f8fafc'
+                }}>
+                    <div style={{ fontSize: '11px', color: '#64748b', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        Data Source: <span style={{ color: '#1E293B' }}>Export Genius</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <img
+                            src="https://www.exportgenius.in/images/logo.png"
+                            alt="Export Genius"
+                            style={{ height: '24px', width: 'auto', objectFit: 'contain' }}
+                        />
                     </div>
                 </div>
             </div>

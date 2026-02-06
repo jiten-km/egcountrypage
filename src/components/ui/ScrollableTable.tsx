@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 
 interface Column {
     header: string;
@@ -78,15 +79,41 @@ export default function ScrollableTable({ columns, data, maxHeight = '400px' }: 
             </div>
             {data.length > 5 && (
                 <div style={{
-                    padding: '10px 16px',
+                    padding: '12px 16px',
                     background: '#F9FAFB',
                     borderTop: '1px solid #E5E7EB',
-                    fontSize: '12px',
-                    color: '#6B7280',
                     textAlign: 'center',
-                    fontWeight: 500
                 }}>
-                    Showing all {data.length} records
+                    <a
+                        href="https://dashboard.exportgenius.in/search"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            padding: '8px 24px',
+                            background: '#eff6ff',
+                            color: '#2563eb',
+                            fontSize: '13px',
+                            fontWeight: 600,
+                            borderRadius: '100px',
+                            textDecoration: 'none',
+                            transition: 'all 0.2s',
+                            border: '1px solid #dbeafe'
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#dbeafe';
+                            e.currentTarget.style.transform = 'translateY(-1px)';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#eff6ff';
+                            e.currentTarget.style.transform = 'translateY(0)';
+                        }}
+                    >
+                        View all {data.length} records
+                        <ArrowRight size={14} />
+                    </a>
                 </div>
             )}
         </div>

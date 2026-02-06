@@ -147,10 +147,10 @@ export default function OverviewSection() {
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                         <h3 style={{ fontSize: '24px', fontWeight: 800, color: 'var(--grey-900)', letterSpacing: '-0.02em' }}>
-                            Vietnam Import Trade Intelligence
+                            Vietnam Import Overview
                         </h3>
-                        <span style={{ fontSize: '12px', background: '#ecfdf5', color: '#059669', padding: '4px 12px', borderRadius: '100px', fontWeight: 700 }}>
-                            SGE Optimized Summary
+                        <span style={{ fontSize: '12px', background: '#ecfdf5', color: '#060606ff', padding: '4px 12px', borderRadius: '100px', fontWeight: 700 }}>
+                            Data Source: Export Genius
                         </span>
                     </div>
 

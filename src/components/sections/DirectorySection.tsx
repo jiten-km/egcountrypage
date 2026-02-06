@@ -57,8 +57,16 @@ export default function DirectorySection() {
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
     return (
-        <section style={{ padding: '60px 0', background: '#f8fafc', fontFamily: 'var(--font-inter)' }}>
+        <section style={{ padding: '20px 0 60px 0', background: '#f8fafc', fontFamily: 'var(--font-inter)' }}>
             <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', padding: '0 40px' }}>
+                <div style={{ marginBottom: '32px' }}>
+                    <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#0f172a', marginBottom: '12px', letterSpacing: '-0.02em' }}>
+                        Explore More <span style={{ color: '#2563eb' }}>Vietnam Trade Data</span>
+                    </h2>
+                    <p style={{ color: '#64748b', fontSize: '16px', fontWeight: 500, lineHeight: '1.6', maxWidth: '100%' }}>
+                        Browse through our comprehensive directory of products, companies, and HS codes to uncover deep insights into Vietnam's import and export landscape. Effortlessly navigate the building blocks of trade.
+                    </p>
+                </div>
 
                 {/* Tab Container */}
                 <div style={{ background: 'white', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', border: '1px solid #e2e8f0' }}>

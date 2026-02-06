@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Database,
     Search,
@@ -19,8 +19,13 @@ import {
     TrendingUp,
     ShieldCheck
 } from 'lucide-react';
+import SubscriptionModal from '../ui/SubscriptionModal';
+import DataFieldsModal from '../ui/DataFieldsModal';
 
 export default function FactSheetSection() {
+    const [isSubscriptionModalOpen, setIsSubscriptionModalOpen] = useState(false);
+    const [isDataFieldsModalOpen, setIsDataFieldsModalOpen] = useState(false);
+
     return (
         <div id="fact-sheet" style={{ marginBottom: '80px', fontFamily: 'var(--font-inter)' }}>
             {/* Header Section */}
@@ -150,8 +155,20 @@ export default function FactSheetSection() {
                 boxShadow: '0 10px 15px -3px rgba(0,0,0,0.03)',
                 border: '1px solid #f1f5f9'
             }}>
-                <FeatureItem icon={<Calendar size={18} />} label="Available Plan" value="7-Days Free Trial" link href="https://dashboard.exportgenius.in/sign-up" />
-                <FeatureItem icon={<FileText size={18} />} label="Data Fields" value="Sample Available" link href="https://www.exportgenius.in/export-import-trade-data/" />
+                <FeatureItem
+                    icon={<Calendar size={18} />}
+                    label="Available Plan"
+                    value="Subscribe Now"
+                    link
+                    onClick={() => setIsSubscriptionModalOpen(true)}
+                />
+                <FeatureItem
+                    icon={<FileText size={18} />}
+                    label="Data Fields"
+                    value="View All Fields"
+                    link
+                    onClick={() => setIsDataFieldsModalOpen(true)}
+                />
                 <FeatureItem icon={<HelpCircle size={18} />} label="Support" value="24/7 Support Available" link href="https://www.exportgenius.in/company/contact-us.php" />
                 <FeatureItem icon={<TrendingUp size={18} />} label="Trusted by" value="25K+ Clients " />
             </div>
@@ -161,6 +178,18 @@ export default function FactSheetSection() {
                     *Information updated on Feb 2026 • Verified by Export Genius
                 </span>
             </div>
+
+            {/* Subscription Modal */}
+            <SubscriptionModal
+                isOpen={isSubscriptionModalOpen}
+                onClose={() => setIsSubscriptionModalOpen(false)}
+            />
+
+            {/* Data Fields Modal */}
+            <DataFieldsModal
+                isOpen={isDataFieldsModalOpen}
+                onClose={() => setIsDataFieldsModalOpen(false)}
+            />
         </div>
     );
 }
@@ -200,14 +229,21 @@ function StatWidget({ icon, label, value, trend }: { icon: any, label: string, v
     );
 }
 
-function FeatureItem({ icon, label, value, link, href }: { icon: React.ReactNode, label: string, value: string, link?: boolean, href?: string }) {
+function FeatureItem({ icon, label, value, link, href, onClick }: {
+    icon: React.ReactNode,
+    label: string,
+    value: string,
+    link?: boolean,
+    href?: string,
+    onClick?: () => void
+}) {
     return (
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <div style={{ color: '#2563eb', background: '#eff6ff', padding: '10px', borderRadius: '12px' }}>{icon}</div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: '12px', color: '#64748b' }}>{label}</span>
                 {link && href ? (
-                    <a href={href} style={{
+                    <a href={href} target="_blank" rel="noopener noreferrer" style={{
                         fontSize: '14px',
                         fontWeight: 700,
                         color: '#2563eb',
@@ -216,6 +252,19 @@ function FeatureItem({ icon, label, value, link, href }: { icon: React.ReactNode
                     }}>
                         {value}
                     </a>
+                ) : link && onClick ? (
+                    <span
+                        onClick={onClick}
+                        style={{
+                            fontSize: '14px',
+                            fontWeight: 700,
+                            color: '#2563eb',
+                            textDecoration: 'underline',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        {value}
+                    </span>
                 ) : (
                     <span style={{
                         fontSize: '14px',

@@ -104,6 +104,27 @@ export default function ChartSectionWrapper({ title, value, children }: ChartSec
             <div style={{ padding: '0 20px 20px' }}>
                 {children}
             </div>
+
+            {/* Data Source Footer */}
+            <div style={{
+                padding: '12px 20px',
+                borderTop: '1px solid #F3F4F6',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                background: '#FAFBFC'
+            }}>
+                <div style={{ fontSize: '11px', color: '#6B7280', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    Data Source: <span style={{ color: '#374151' }}>Export Genius</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <img
+                        src="https://www.exportgenius.in/images/logo.png"
+                        alt="Export Genius"
+                        style={{ height: '20px', width: 'auto', objectFit: 'contain' }}
+                    />
+                </div>
+            </div>
         </div>
     );
 }

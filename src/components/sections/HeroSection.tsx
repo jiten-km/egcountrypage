@@ -1,9 +1,12 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowUpRight, ShieldCheck, Search, Mic } from 'lucide-react';
 import styles from './hero-section.module.css';
+import DownloadSampleModal from '../ui/DownloadSampleModal';
 
 export default function HeroSection() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <section className={styles.hero}>
             <div className={styles.heroBackground} />
@@ -21,11 +24,14 @@ export default function HeroSection() {
                     </p>
 
                     <div className={styles.ctaGroup}>
-                        <button className={styles.primaryButton}>
-                            Get Free Sample Report
+                        <button
+                            className={styles.primaryButton}
+                            onClick={() => setIsModalOpen(true)}
+                        >
+                            Download Free Sample
                         </button>
                         <button className={styles.secondaryButton}>
-                            Schedule Demo
+                            Book A Demo
                         </button>
                     </div>
 
@@ -127,6 +133,12 @@ export default function HeroSection() {
                     ))}
                 </div>
             </div>
+
+            {/* Download Sample Modal */}
+            <DownloadSampleModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+            />
         </section>
     );
 }

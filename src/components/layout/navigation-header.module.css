@@ -1,11 +1,13 @@
 .header {
     height: 80px;
-    background-color: var(--white);
-    border-bottom: 1px solid var(--grey-200);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(229, 231, 235, 0.5);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -15,49 +17,69 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--grey-900);
     display: flex;
     align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.logoIcon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.logoText {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+}
+
+.logoText span {
+    color: #2563eb;
 }
 
 .nav {
     display: flex;
-    gap: 30px;
+    gap: 8px;
     align-items: center;
+    background: #f1f5f9;
+    padding: 6px;
+    border-radius: 12px;
 }
 
 .navItem {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--grey-700);
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
     cursor: pointer;
-    position: relative;
-    transition: color 0.2s;
 }
 
 .navItem:hover {
-    color: var(--primary);
+    color: #0f172a;
+    background: white;
 }
 
-.navItem::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary);
-    transition: width 0.2s;
-}
-
-.navItem:hover::after {
-    width: 100%;
+.navItem.active {
+    color: #2563eb;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .actions {
@@ -66,39 +88,79 @@
     align-items: center;
 }
 
-.iconButton {
-    padding: 8px;
-    color: var(--grey-600);
-    border-radius: 50%;
-    transition: background-color 0.2s, color 0.2s;
+.searchShortcut {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f1f5f9;
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: #94a3b8;
+    font-size: 14px;
+    min-width: 200px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
 }
 
-.iconButton:hover {
-    background-color: var(--grey-100);
-    color: var(--grey-900);
+.searchShortcut:hover {
+    background: white;
+    border-color: #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.searchShortcut kbd {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.verticalDivider {
+    width: 1px;
+    height: 24px;
+    background: #e2e8f0;
 }
 
 .signIn {
-    font-weight: 500;
-    color: var(--grey-700);
-    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #475569;
 }
 
 .tryFree {
-    background-color: var(--primary);
-    color: var(--white);
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: background-color 0.2s;
+    background: #0f172a;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s;
 }
 
 .tryFree:hover {
-    background-color: var(--primary-dark);
+    background: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
 }
 
-@media (max-width: 1024px) {
-    .nav {
+.menuButton {
+    display: none;
+    padding: 8px;
+    color: #64748b;
+}
+
+@media (max-width: 1200px) {
+
+    .nav,
+    .searchShortcut,
+    .verticalDivider {
         display: none;
+    }
+
+    .menuButton {
+        display: block;
     }
 }

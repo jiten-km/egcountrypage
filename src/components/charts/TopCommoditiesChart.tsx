@@ -62,7 +62,7 @@ const CustomContent = (props: CustomContentProps) => {
 const tableColumns = [
     { header: 'HS Code', key: 'code', align: 'left' as const },
     {
-        header: 'Category',
+        header: 'Commodity',
         key: 'name',
         align: 'left' as const,
         render: (val: string) => (

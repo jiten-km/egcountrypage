@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import {
     FileText,
     Calendar,
@@ -8,18 +8,15 @@ import {
     Truck,
     User,
     MapPin,
-    ShieldCheck,
     ArrowRight,
     Phone,
     Anchor,
     Weight,
     DollarSign,
-    Layers,
-    ChevronDown
+    Layers
 } from 'lucide-react';
 
 export default function BillOfLadingSection() {
-    const [submitted, setSubmitted] = useState(false);
     return (
         <section id="bill-of-lading" style={{ marginTop: '100px', marginBottom: '100px', fontFamily: 'var(--font-inter)' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '0.8fr 1.2fr', gap: '60px', alignItems: 'flex-start' }}>
@@ -38,14 +35,20 @@ export default function BillOfLadingSection() {
                         fontWeight: 700,
                         marginBottom: '24px'
                     }}>
-                        <ShieldCheck size={16} />
+                        <FileText size={16} />
                         DETAILED SHIPMENT PREVIEW
                     </div>
                     <h2 style={{ fontSize: '36px', fontWeight: 800, color: '#0f172a', marginBottom: '20px', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                         Complete <span style={{ color: '#2563eb' }}>Data Transparency</span> for Vietnam Imports
                     </h2>
-                    <p style={{ color: '#64748b', fontSize: '17px', lineHeight: 1.6, marginBottom: '32px' }}>
-                        Our database provides an exhaustive list of 25+ fields for every transaction. Understand your competition with precise details on pricing, quantities, logistics, and company contact information.
+                    <p style={{ color: '#64748b', fontSize: '16px', lineHeight: 1.6, marginBottom: '24px' }}>
+                        Unlock unparalleled visibility into Vietnam's trade landscape with our exhaustive database, featuring over 25 distinct data fields for every transaction. From precise HS codes and detailed product descriptions to unit pricing and total quantities, our records provide the granular insights needed to understand market dynamics and competitor strategies.
+                    </p>
+                    <p style={{ color: '#64748b', fontSize: '16px', lineHeight: 1.6, marginBottom: '24px' }}>
+                        We aggregate high-fidelity data from trusted customs departments, shipping lines, and logistics hubs to ensure maximum accuracy. This comprehensive dataset tracks the movement of goods with verified details on origin and destination countries, specific ports of loading and discharge, and complete logistics routing.
+                    </p>
+                    <p style={{ color: '#64748b', fontSize: '16px', lineHeight: 1.6, marginBottom: '32px' }}>
+                        Designed for strategic decision-makers, this intelligence is crucial for verifying suppliers, analyzing price trends, and identifying new opportunities. Review the sample shipment record on the right to experience the depth, structure, and value of the actual data you will access.
                     </p>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '40px' }}>
@@ -56,168 +59,26 @@ export default function BillOfLadingSection() {
                     </div>
 
                     {/* Request Access Form */}
-                    <div style={{
-                        marginTop: '0px',
-                        background: 'white',
-                        borderRadius: '32px',
-                        padding: '40px',
-                        boxShadow: '0 25px 50px -12px rgba(0,0,0,0.08)',
-                        border: '1px solid #f1f5f9'
-                    }}>
-                        {submitted ? (
-                            <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                                <div style={{ width: '60px', height: '60px', background: '#dcfce7', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', color: '#16a34a' }}>
-                                    <ShieldCheck size={32} />
-                                </div>
-                                <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', marginBottom: '12px' }}>Thank You!</h3>
-                                <p style={{ color: '#64748b', fontSize: '15px' }}>Our team will contact you shortly.</p>
-                                <button onClick={() => setSubmitted(false)} style={{ marginTop: '24px', background: 'none', border: '1px solid #cbd5e1', padding: '8px 20px', borderRadius: '100px', fontSize: '14px', fontWeight: 600, color: '#64748b', cursor: 'pointer' }}>Send another</button>
-                            </div>
-                        ) : (
-                            <>
-                                <h3 style={{ fontSize: '24px', fontWeight: 800, color: '#004a8b', marginBottom: '24px' }}>Request to Access Full Database</h3>
-                                <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                                        <input
-                                            type="text"
-                                            placeholder="First Name*"
-                                            required
-                                            style={{
-                                                padding: '14px 18px',
-                                                borderRadius: '10px',
-                                                border: 'none',
-                                                background: '#f0f4f8',
-                                                fontSize: '14px',
-                                                outline: 'none',
-                                                color: '#1e293b'
-                                            }}
-                                        />
-                                        <input
-                                            type="text"
-                                            placeholder="Last Name*"
-                                            required
-                                            style={{
-                                                padding: '14px 18px',
-                                                borderRadius: '10px',
-                                                border: 'none',
-                                                background: '#f0f4f8',
-                                                fontSize: '14px',
-                                                outline: 'none',
-                                                color: '#1e293b'
-                                            }}
-                                        />
-                                    </div>
-
-                                    <input
-                                        type="email"
-                                        placeholder="Email Id*"
-                                        required
-                                        style={{
-                                            padding: '14px 18px',
-                                            borderRadius: '10px',
-                                            border: 'none',
-                                            background: '#f0f4f8',
-                                            fontSize: '14px',
-                                            outline: 'none',
-                                            width: '100%',
-                                            color: '#1e293b'
-                                        }}
-                                    />
-
-                                    <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr', gap: '12px' }}>
-                                        <div style={{ position: 'relative' }}>
-                                            <select style={{
-                                                padding: '14px 18px',
-                                                borderRadius: '10px',
-                                                border: 'none',
-                                                background: '#f0f4f8',
-                                                fontSize: '14px',
-                                                outline: 'none',
-                                                width: '100%',
-                                                appearance: 'none',
-                                                cursor: 'pointer',
-                                                fontWeight: 600,
-                                                color: '#1e293b'
-                                            }}>
-                                                <option>+91</option>
-                                                <option value="+84">+84</option>
-                                                <option value="+1">+1</option>
-                                            </select>
-                                            <div style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-                                                <ChevronDown size={16} color="#64748b" />
-                                            </div>
-                                        </div>
-                                        <input
-                                            type="tel"
-                                            placeholder="Contact No.*"
-                                            required
-                                            style={{
-                                                padding: '14px 18px',
-                                                borderRadius: '10px',
-                                                border: 'none',
-                                                background: '#f0f4f8',
-                                                fontSize: '14px',
-                                                outline: 'none',
-                                                color: '#1e293b'
-                                            }}
-                                        />
-                                    </div>
-
-                                    <input
-                                        type="text"
-                                        placeholder="Company Name*"
-                                        required
-                                        style={{
-                                            padding: '14px 18px',
-                                            borderRadius: '10px',
-                                            border: 'none',
-                                            background: '#f0f4f8',
-                                            fontSize: '14px',
-                                            outline: 'none',
-                                            color: '#1e293b'
-                                        }}
-                                    />
-
-                                    <textarea
-                                        placeholder="Message*"
-                                        rows={4}
-                                        required
-                                        style={{
-                                            padding: '14px 18px',
-                                            borderRadius: '10px',
-                                            border: 'none',
-                                            background: '#f0f4f8',
-                                            fontSize: '14px',
-                                            outline: 'none',
-                                            resize: 'none',
-                                            fontFamily: 'inherit',
-                                            color: '#1e293b'
-                                        }}
-                                    />
-
-                                    <button
-                                        type="submit"
-                                        style={{
-                                            background: '#003e7e',
-                                            color: 'white',
-                                            padding: '16px',
-                                            borderRadius: '100px',
-                                            fontSize: '16px',
-                                            fontWeight: 700,
-                                            border: 'none',
-                                            cursor: 'pointer',
-                                            marginTop: '8px',
-                                            transition: 'all 0.2s',
-                                            boxShadow: '0 10px 15px -3px rgba(0, 62, 126, 0.2)'
-                                        }}
-                                        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                                        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                                    >
-                                        Submit Now
-                                    </button>
-                                </form>
-                            </>
-                        )}
+                    {/* CTA Button */}
+                    <div style={{ marginTop: '32px' }}>
+                        <a href="https://dashboard.exportgenius.in/sign-up" target="_blank" rel="noopener noreferrer"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '12px',
+                                background: '#0F172A',
+                                color: 'white',
+                                padding: '16px 32px',
+                                borderRadius: '100px',
+                                fontWeight: 700,
+                                fontSize: '16px',
+                                textDecoration: 'none',
+                                boxShadow: '0 10px 20px -5px rgba(15, 23, 42, 0.3)',
+                                transition: 'all 0.3s ease'
+                            }}>
+                            Request to Access Full Database
+                            <ArrowRight size={20} />
+                        </a>
                     </div>
                 </div>
 

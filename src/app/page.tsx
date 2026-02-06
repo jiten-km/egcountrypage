@@ -1,16 +1,11 @@
+import dynamic from 'next/dynamic';
 import NavigationHeader from "@/components/layout/NavigationHeader";
 import HeroSection from "@/components/sections/HeroSection";
 import MainLayout from "@/components/layout/MainLayout";
 import SectionContainer from "@/components/ui/SectionContainer";
-import TopCommoditiesChart from "@/components/charts/TopCommoditiesChart";
-import ImporterCards from "@/components/sections/ImporterCards";
 import TabNavigation from "@/components/ui/TabNavigation";
 import OverviewSection from "@/components/sections/OverviewSection";
-
-
 import Footer from "@/components/layout/Footer";
-import TrendChart from "@/components/charts/TrendChart";
-import PortChart from "@/components/charts/PortChart";
 import ImportPartners from "@/components/sections/ImportPartners";
 import CTASection from "@/components/sections/CTASection";
 import ChartSectionWrapper from "@/components/ui/ChartSectionWrapper";
@@ -20,10 +15,42 @@ import BillOfLadingSection from "@/components/sections/BillOfLadingSection";
 import CustomerInsiteSection from "@/components/sections/CustomerInsiteSection";
 import TopImportersSection from "@/components/sections/TopImportersSection";
 import DirectorySection from "@/components/sections/DirectorySection";
+import FinalCTASection from "@/components/sections/FinalCTASection";
+
+const TopCommoditiesChart = dynamic(() => import("@/components/charts/TopCommoditiesChart"));
+const TrendChart = dynamic(() => import("@/components/charts/TrendChart"));
+const PortChart = dynamic(() => import("@/components/charts/PortChart"));
 
 export default function Home() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Where is Vietnam's import data sourced from?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our Vietnam import data is sourced from official customs departments, shipping manifests, and bill of lading documents."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How frequently is the Vietnam trade database updated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We update our database daily. New shipment records are processed and added within 24-48 hours of being filed."
+        }
+      }
+    ]
+  };
+
   return (
     <main style={{ minHeight: '100vh', background: 'var(--grey-50)', paddingBottom: '0' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <NavigationHeader />
       <HeroSection />
 
@@ -57,11 +84,11 @@ export default function Home() {
         <SectionContainer
           id="commodities"
           title="Top Import Commodities of Vietnam"
-          subtitle="Explore the comprehensive product distribution of Vietnam's imports, categorized by HS Codes. This section provides a detailed breakdown of 100+ product categories, highlighting shifting demands in electronics, machinery, and raw materials for the manufacturing sector."
+          subtitle="Explore the comprehensive product distribution of Vietnam's imports, categorized by HS Codes. This section provides a detailed breakdown of 100+ commodities, highlighting shifting demands in electronics, machinery, and raw materials for the manufacturing sector."
           variant="transparent"
           fullWidth={true}
         >
-          <ChartSectionWrapper title="Top Commodities by Value" value="100+ Categories">
+          <ChartSectionWrapper title="Top Commodities by Value" value="100+ Commodities">
             <TopCommoditiesChart />
           </ChartSectionWrapper>
         </SectionContainer>
@@ -109,6 +136,9 @@ export default function Home() {
 
       {/* Directory Section (NEW) */}
       <DirectorySection />
+
+      {/* Final CTA Section (NEW) */}
+      <FinalCTASection />
 
       {/* Footer (NEW) */}
       <Footer />

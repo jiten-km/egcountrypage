@@ -5,7 +5,7 @@ import ScrollableTable from '../ui/ScrollableTable';
 import { partnersData } from '@/data/mockTradeData';
 
 const tableColumns = [
-    { header: 'Rank', key: 'rank', align: 'left' as const, render: (val: number) => `#${val}` },
+
     {
         header: 'Country',
         key: 'country',
@@ -88,7 +88,7 @@ export default function ImportPartners() {
                     </a>
                 </div>
 
-                <ScrollableTable columns={tableColumns} data={partnersData} maxHeight="500px" />
+                <ScrollableTable columns={tableColumns} data={partnersData} maxHeight="450px" />
             </div>
         </ChartSectionWrapper>
     );

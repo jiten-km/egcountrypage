@@ -8,7 +8,7 @@
     position: relative;
     padding-top: 90px;
     /* Increased to 90px to prevent Hero Search Bar (bottom: -50px) from overlapping Tabs */
-    padding-bottom: 80px;
+    padding-bottom: 40px;
 }
 
 .content {
