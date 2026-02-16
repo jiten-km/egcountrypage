@@ -23,6 +23,7 @@ export default function NavigationHeader() {
                     <div className={styles.navItemContainer}>
                         <span className={styles.navItem}>Data <ChevronDown size={14} /></span>
                     </div>
+                    <a href="/company-profile" className={styles.navItem}>Company Profile</a>
                     <a href="#" className={styles.navItem}>Pricing</a>
                     <a href="#" className={styles.navItem}>Resources</a>
                 </nav>

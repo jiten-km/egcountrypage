@@ -6,7 +6,7 @@ export default function FinalCTASection() {
     return (
         <section style={{
             padding: '80px 20px',
-            background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)',
+            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
             fontFamily: 'var(--font-inter)',
             color: 'white',
             position: 'relative',
@@ -61,7 +61,7 @@ export default function FinalCTASection() {
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent'
                     }}>
-                        Ready to Dominate the Vietnam Market?
+                        Scale Your Partnerships with Samsung Electronics Vietnam
                     </h2>
 
                     <p style={{
@@ -71,7 +71,7 @@ export default function FinalCTASection() {
                         marginBottom: '40px',
                         maxWidth: '600px'
                     }}>
-                        Get immediate access to 368M+ shipment records. Verify suppliers, track competitors, and uncover high-growth opportunities with the most accurate trade data available.
+                        Empower your procurement and supply chain decisions with 100% verified shipment data. Unlock deep strategic insights into buyer networks, supplier resilience, and competitive trade volumes.
                     </p>
 
                     <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>

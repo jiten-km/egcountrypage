@@ -7,28 +7,28 @@ export default function CustomerInsiteSection() {
 
     const faqs = [
         {
-            q: "Where is Vietnam's import data sourced from?",
-            a: "Our Vietnam import data is sourced from official customs departments, shipping manifests, and bill of lading documents. This ensures 100% accuracy and authenticity in all shipment records we provide."
+            q: "How is the company-specific trade data verified?",
+            a: "Our company records are cross-referenced with official Vietnam Customs filings, port authority manifests, and verified Bill of Lading documents to ensure 100% accuracy for every shipment reported."
         },
         {
-            q: "How frequently is the Vietnam trade database updated?",
-            a: "We update our database daily. New shipment records are processed and added within 24-48 hours of being filed with the customs authorities, giving you the most real-time insights possible."
+            q: "Can I identify the exact global buyers for this company?",
+            a: "Yes, our database provides granular detail on consignees and buyers, including their business names, historical purchase volumes, and primary product categories sourced from Vietnam."
         },
         {
-            q: "Can I find specific company contact details in the records?",
-            a: "Yes, our premium records include importer and exporter names, their addresses, and in many cases, verified phone numbers and email addresses to help you build direct business relationships."
+            q: "How often are these verified company profiles updated?",
+            a: "Company profiles are updated daily. New shipment records and revised company metadata are processed within 24-48 hours of being declared at Vietnam's international gateways."
         },
         {
-            q: "What all fields are covered in Vietnam Import Data?",
-            a: "Our data covers 25+ fields including HS Code, Product Description, Quantity, Unit, Price, Total Value, Port of Loading, Port of Discharge, Importer/Exporter names, Consignee details, and Mode of Transport."
+            q: "What granular fields are included in the company manifest?",
+            a: "Profiles cover 25+ critical data points, including specific HS Codes (8-digit), detailed item descriptions, unit prices, shipment quantities, and the exact transit ports used."
         },
         {
-            q: "Is there a limit to how much data I can export?",
-            a: "Depending on your subscription plan, you can export varying volumes of data. We offer flexible plans ranging from small business needs to enterprise-level bulk data access for deep market analysis."
+            q: "Can I benchmark this company against its local competitors?",
+            a: "Absolutely. Our platform allows you to compare shipment volumes, growth trends, and supplier networks across all major players in the same industry segment in Vietnam."
         },
         {
-            q: "Do you provide data for other countries besides Vietnam?",
-            a: "Yes, we provide global trade intelligence covering over 190+ countries. You can access cross-border trade data between Vietnam and all its major trading partners globally."
+            q: "Do you provide contact intelligence for these companies?",
+            a: "Yes, premium access includes key decision-maker profiles, verified corporate email formats, and LinkedIn connectivity to facilitate direct business outreach and partnership building."
         }
     ];
 

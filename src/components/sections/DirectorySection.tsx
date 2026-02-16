@@ -8,22 +8,22 @@ export default function DirectorySection() {
 
     const tabs = [
         {
-            name: "Browse Vietnam Products",
+            name: "View Other Buyers",
             items: [
-                "Coffee Import Data of Vietnam",
-                "Palm Oil Import Data of Vietnam",
-                "Plastic Import Data of Vietnam",
-                "Steel Import Data of Vietnam",
-                "Iron Import Data of Vietnam",
-                "Toys Import Data of Vietnam",
-                "Mobile Phone Import Data of Vietnam",
-                "Notebook Import Data of Vietnam",
-                "Pen Cover Import Data of Vietnam",
-                "Bottle Import Data of Vietnam"
+                "ABCD Limited",
+                "XYZ Limited",
+                "TDS Limited",
+                "HJD Limited",
+                "YWS Limited",
+                "PBK Limited",
+                "ZSR Limited",
+                "LKI Limited",
+                "VBD Limited",
+                "EWQ Limited"
             ]
         },
         {
-            name: "Browse Vietnam Companies",
+            name: "View Other Suppliers",
             items: [
                 "ABCD Limited",
                 "XYX Limited",
@@ -38,18 +38,18 @@ export default function DirectorySection() {
             ]
         },
         {
-            name: "Browse Vietnam HS Code",
+            name: "View Companies Alphabetically",
             items: [
-                "HS Code 84212321 Import Data of Vietnam",
-                "HS Code 39219096 Import Data of Vietnam",
-                "HS Code 27090090 Import Data of Vietnam",
-                "HS Code 20089985 Import Data of Vietnam",
-                "HS Code 71094587 Import Data of Vietnam",
-                "HS Code 87087032 Import Data of Vietnam",
-                "HS Code 70133300 Import Data of Vietnam",
-                "HS Code 22042117 Import Data of Vietnam",
-                "HS Code 40169110 Import Data of Vietnam",
-                "HS Code 11071099 Import Data of Vietnam"
+                "KABCD Limited",
+                "XGYZ Limited",
+                "TDSS Limited",
+                "HJDO Limited",
+                "YWSM Limited",
+                "PBKB Limited",
+                "ZSRL Limited",
+                "LKIS Limited",
+                "VBDA Limited",
+                "EWQO Limited"
             ]
         }
     ];
@@ -61,10 +61,10 @@ export default function DirectorySection() {
             <div style={{ width: '100%', maxWidth: '100%', margin: '0 auto', padding: '0 40px' }}>
                 <div style={{ marginBottom: '32px' }}>
                     <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#0f172a', marginBottom: '12px', letterSpacing: '-0.02em' }}>
-                        Explore More <span style={{ color: '#2563eb' }}>Vietnam Trade Data</span>
+                        Explore More
                     </h2>
                     <p style={{ color: '#64748b', fontSize: '16px', fontWeight: 500, lineHeight: '1.6', maxWidth: '100%' }}>
-                        Browse through our comprehensive directory of products, companies, and HS codes to uncover deep insights into Vietnam's import and export landscape. Effortlessly navigate the building blocks of trade.
+                        Effortlessly navigate through Vietnam's comprehensive trade landscape. Use our targeted directories to discover new strategic partners, analyze high-growth product categories, and benchmark specific HS code trends across the entire market.
                     </p>
                 </div>
 
@@ -140,7 +140,7 @@ export default function DirectorySection() {
                             {tabs[activeTab].items.map((item, idx) => (
                                 <a
                                     key={idx}
-                                    href="#"
+                                    href={item.includes('Samsung') ? "/company-profile" : "#"}
                                     style={{
                                         fontSize: '14px',
                                         color: '#2563eb',

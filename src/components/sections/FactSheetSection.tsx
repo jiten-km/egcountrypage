@@ -291,7 +291,7 @@ export default function FactSheetSection() {
     );
 }
 
-function StatWidget({ icon, label, value, trend }: { icon: any, label: string, value: string, trend?: string }) {
+function StatWidget({ icon, label, value, trend }: { icon: React.ReactNode, label: string, value: string, trend?: string }) {
     return (
         <div style={{
             background: 'white',
@@ -312,7 +312,9 @@ function StatWidget({ icon, label, value, trend }: { icon: any, label: string, v
                 target.style.boxShadow = '0 1px 3px rgba(0,0,0,0.02)';
             }}
         >
-            <div style={{ color: '#94a3b8', marginBottom: '16px' }}>{React.cloneElement(icon as React.ReactElement<any>, { size: 24 })}</div>
+            <div style={{ color: '#94a3b8', marginBottom: '16px' }}>
+                {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<{ size?: number }>, { size: 24 }) : icon}
+            </div>
             <div style={{ fontSize: '13px', color: '#64748b', fontWeight: 500, marginBottom: '4px' }}>{label}</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a' }}>{value}</div>

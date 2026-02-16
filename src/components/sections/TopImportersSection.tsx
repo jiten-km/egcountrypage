@@ -19,11 +19,19 @@ export default function TopImportersSection() {
             header: activeTab === 'importers' ? 'Importer Name' : 'Supplier Name',
             key: 'name',
             align: 'left' as const,
-            render: (val: string) => (
-                <a href={`https://dashboard.exportgenius.in/search?q=${val}`} target="_blank" rel="noopener noreferrer" style={{ color: '#2563EB', fontWeight: 600, textDecoration: 'none' }}>
-                    {val}
-                </a>
-            )
+            render: (val: string) => {
+                const isSamsung = val.toLowerCase().includes('samsung');
+                return (
+                    <a
+                        href={isSamsung ? "/company-profile" : `https://dashboard.exportgenius.in/search?q=${val}`}
+                        target={isSamsung ? "_self" : "_blank"}
+                        rel="noopener noreferrer"
+                        style={{ color: '#2563EB', fontWeight: 600, textDecoration: 'none' }}
+                    >
+                        {val}
+                    </a>
+                );
+            }
         },
         { header: 'Value ($M)', key: 'value', align: 'right' as const, render: (val: number) => Math.round(val).toLocaleString() },
         { header: 'Share', key: 'percent', align: 'right' as const, render: (val: number) => <span style={{ fontWeight: 700 }}>{val}%</span> }
