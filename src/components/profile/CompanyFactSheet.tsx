@@ -1,7 +1,14 @@
 import React from 'react';
 import { Info, Tag, Phone, Mail, Calendar, User, Map, Database, ShieldCheck } from 'lucide-react';
 
-const facts = [
+type Fact = {
+    icon: React.ReactNode;
+    label: string;
+    value: string;
+    label2?: string;
+};
+
+const facts: Fact[] = [
     { icon: <Info size={18} />, label: 'Brand Name', value: 'Samsung' },
     { icon: <Phone size={18} />, label: 'Contact', value: '+84 222 3696 111' },
     { icon: <Mail size={18} />, label: 'Company Email', value: 'support.vn@samsung.com' },
