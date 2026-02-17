@@ -21,7 +21,11 @@ import {
 export default function ProfileHero() {
     return (
         <section style={{
-            background: '#020617', // Deep Midnight Blue
+            background: '#020617', // Deep Midnight Blue Fallback
+            backgroundImage: 'linear-gradient(to right bottom, rgba(2, 6, 23, 0.85), rgba(15, 23, 42, 0.9)), url(/vietnam-banner.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
             color: 'white',
             padding: '80px 0 60px 0',
             position: 'relative',
